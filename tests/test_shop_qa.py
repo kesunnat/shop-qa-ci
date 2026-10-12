@@ -59,7 +59,7 @@ def test_shop_qa_edge(driver_edge):
     menu_page.select_card_margherita_pizza()
     menu_page.click_btn_basket()
     menu_page.click_btn_back()
-    menu_edge.click_basket()
+    menu_page.click_basket()
     menu_page.click_section_basket()
     menu_page.click_btn_exit()
     menu_page.click_btn_yes()
