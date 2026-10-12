@@ -59,7 +59,7 @@ def test_shop_qa_edge(driver_edge):
     menu_page.select_card_margherita_pizza()
     menu_page.click_btn_basket()
     menu_page.click_btn_back()
-    menu_page.click_basket()
+    menu_edge.click_basket()
     menu_page.click_section_basket()
     menu_page.click_btn_exit()
     menu_page.click_btn_yes()
@@ -76,4 +76,5 @@ def test_invalid_shop_qa_edge(driver_edge):
         EC.presence_of_element_located(login_page.login)
     )
     assert 'login' in driver_edge.current_url
+
 
