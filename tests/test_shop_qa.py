@@ -6,7 +6,7 @@ from pages.login_page import LoginPage
 from pages.menu_page import MenuPage
 
 def test_shop_qa_chrome(driver_chrome):
-    driver_chrome.get('https://vercel.app')
+    driver_chrome.get('https://shop-qa-master.vercel.app/#/login')
     login_page = LoginPage(driver_chrome)
     
     login_page.enter_login('arseniy')
@@ -14,7 +14,7 @@ def test_shop_qa_chrome(driver_chrome):
     login_page.click_btn_enter()
     
     WebDriverWait(driver_chrome, 10).until(
-        EC.url_changes('https://vercel.app')
+        EC.url_changes('https://shop-qa-master.vercel.app/#/login')
     )
 
     menu_page = MenuPage(driver_chrome)
@@ -29,7 +29,7 @@ def test_shop_qa_chrome(driver_chrome):
     menu_page.click_btn_yes()
 
 def test_invalid_shop_qa_chrome(driver_chrome):
-    driver_chrome.get('https://vercel.app')
+    driver_chrome.get('https://shop-qa-master.vercel.app/#/login')
     login_page = LoginPage(driver_chrome)
     
     login_page.enter_login('arseniy')
@@ -42,7 +42,7 @@ def test_invalid_shop_qa_chrome(driver_chrome):
     assert 'login' in driver_chrome.current_url
 
 def test_shop_qa_edge(driver_edge):
-    driver_edge.get('https://vercel.app')
+    driver_edge.get('https://shop-qa-master.vercel.app/#/login')
     login_page = LoginPage(driver_edge)
     
     login_page.enter_login('arseniy')
@@ -50,7 +50,7 @@ def test_shop_qa_edge(driver_edge):
     login_page.click_btn_enter()
     
     WebDriverWait(driver_edge, 10).until(
-        EC.url_changes('https://vercel.app')
+        EC.url_changes('https://shop-qa-master.vercel.app/#/login')
     )
 
     menu_page = MenuPage(driver_edge)
@@ -65,7 +65,7 @@ def test_shop_qa_edge(driver_edge):
     menu_page.click_btn_yes()
 
 def test_invalid_shop_qa_edge(driver_edge):
-    driver_edge.get('https://vercel.app')
+    driver_edge.get('https://shop-qa-master.vercel.app/#/login')
     login_page = LoginPage(driver_edge)
     
     login_page.enter_login('arseniy')
