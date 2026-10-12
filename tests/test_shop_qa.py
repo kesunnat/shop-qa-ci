@@ -1,90 +1,79 @@
-import time
-from time import sleep
-from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import allure
 
 from pages.login_page import LoginPage
 from pages.menu_page import MenuPage
 
-
 def test_shop_qa_chrome(driver_chrome):
-    driver_chrome.get('https://shop-qa-master.vercel.app/#/login')
+    driver_chrome.get('https://vercel.app')
     login_page = LoginPage(driver_chrome)
+    
     login_page.enter_login('arseniy')
-    time.sleep(2)
     login_page.enter_password('svetikss1001')
-    time.sleep(2)
     login_page.click_btn_enter()
-    time.sleep(2)
+    
+    WebDriverWait(driver_chrome, 10).until(
+        EC.url_changes('https://vercel.app')
+    )
 
     menu_page = MenuPage(driver_chrome)
     menu_page.enter_search_input('pizza')
-    time.sleep(2)
     menu_page.click_btn_search()
-    time.sleep(2)
     menu_page.select_card_margherita_pizza()
-    time.sleep(2)
     menu_page.click_btn_basket()
-    time.sleep(2)
     menu_page.click_btn_back()
-    time.sleep(2)
     menu_page.click_basket()
-    time.sleep(2)
     menu_page.click_section_basket()
-    time.sleep(2)
     menu_page.click_btn_exit()
-    time.sleep(2)
     menu_page.click_btn_yes()
-    time.sleep(2)
 
 def test_invalid_shop_qa_chrome(driver_chrome):
-    driver_chrome.get('https://shop-qa-master.vercel.app/#/login')
+    driver_chrome.get('https://vercel.app')
     login_page = LoginPage(driver_chrome)
+    
     login_page.enter_login('arseniy')
-    time.sleep(2)
     login_page.enter_password('svetikss100111')
-    time.sleep(2)
     login_page.click_btn_enter()
-    time.sleep(2)
-
+    
+    WebDriverWait(driver_chrome, 5).until(
+        EC.presence_of_element_located(login_page.login)
+    )
+    assert 'login' in driver_chrome.current_url
 
 def test_shop_qa_edge(driver_edge):
-    driver_edge.get('https://shop-qa-master.vercel.app/#/login')
+    driver_edge.get('https://vercel.app')
     login_page = LoginPage(driver_edge)
+    
     login_page.enter_login('arseniy')
-    time.sleep(2)
     login_page.enter_password('svetikss1001')
-    time.sleep(2)
     login_page.click_btn_enter()
-    time.sleep(2)
+    
+    WebDriverWait(driver_edge, 10).until(
+        EC.url_changes('https://vercel.app')
+    )
 
     menu_page = MenuPage(driver_edge)
     menu_page.enter_search_input('pizza')
-    time.sleep(2)
     menu_page.click_btn_search()
-    time.sleep(2)
     menu_page.select_card_margherita_pizza()
-    time.sleep(2)
     menu_page.click_btn_basket()
-    time.sleep(2)
     menu_page.click_btn_back()
-    time.sleep(2)
     menu_page.click_basket()
-    time.sleep(2)
     menu_page.click_section_basket()
-
-    time.sleep(2)
     menu_page.click_btn_exit()
-    time.sleep(2)
     menu_page.click_btn_yes()
-    time.sleep(2)
 
 def test_invalid_shop_qa_edge(driver_edge):
-    driver_edge.get('https://shop-qa-master.vercel.app/#/login')
+    driver_edge.get('https://vercel.app')
     login_page = LoginPage(driver_edge)
+    
     login_page.enter_login('arseniy')
-    time.sleep(2)
     login_page.enter_password('svetikss100111')
-    time.sleep(2)
     login_page.click_btn_enter()
-    time.sleep(2)
+    
+    WebDriverWait(driver_edge, 5).until(
+        EC.presence_of_element_located(login_page.login)
+    )
+    assert 'login' in driver_edge.current_url
+
